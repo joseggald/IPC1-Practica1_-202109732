@@ -100,7 +100,7 @@ public class PacMan {
                     v1 = (int) (Math.random() * (6) + 3);
                     v2 = (int) (Math.random() * (6) + 3);
                     tabla[v1][v2]="V";
-                    if(fil<=12 && col<=12){
+                    if(fil<=100 && col<=100){
                         r1 = (int) (Math.random()*(fil-2) + 2);
                         r2 = (int) (Math.random() * (col-2) + 2);
                         tabla[r1][r2]="$";
@@ -111,34 +111,7 @@ public class PacMan {
                         u2 = (int) (Math.random() * (col-2) + 2);
                         tabla[u1][u2]="#";
                     }
-                    if(fil>=12 && col>=12 && fil<=25 && col<= 25){
-                        for(int i=1; i<=2; i++){
-                            r1 = (int) (Math.random()*(fil-2) + 2);
-                            r2 = (int) (Math.random() * (col-2) + 2);
-                            tabla[r1][r2]="$";
-                            p1 = (int) (Math.random() * (fil-2) + 2);
-                            p2 = (int) (Math.random() * (col-2) + 2);
-                            tabla[p1][p2]="@";
-                            u1 = (int) (Math.random() * (fil-2) + 2);
-                            u2 = (int) (Math.random() * (col-2) + 2);
-                            tabla[u1][u2]="#";
-                        }
 
-                    }
-                    if(fil>=25 && col>=25 && fil<=52 && col<= 52){
-                        for(int i=1; i<=4; i++){
-                            r1 = (int) (Math.random() * (fil-2) + 2);
-                            r2 = (int) (Math.random() * (col-2) + 2);
-                            tabla[r1][r2]="$";
-                            p1 = (int) (Math.random() * (fil-2) + 2);
-                            p2 = (int) (Math.random() * (col-2) + 2);
-                            tabla[p1][p2]="@";
-                            u1 = (int) (Math.random() * (fil-2) + 2);
-                            u2 = (int) (Math.random() * (col-2) + 2);
-                            tabla[u1][u2]="#";
-                        }
-
-                    }
 
                     for(int j=1; j<=fil; j++) {
                         for(int k=1; k<=col; k++) {
