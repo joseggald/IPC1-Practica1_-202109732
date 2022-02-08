@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 public class PacMan {
 
@@ -6,9 +7,11 @@ public class PacMan {
         String  edad[] = new String [100];
         String  nom[] = new String [100];
         String tabla[][] = new String [100][100];
-        int userCont=0, fil, col, m, m2=0;
-        int op, op2=0,n,n2, v1, v2, r1, r2,p1,p2,u2,u1;
-        String x;
+        int userCont=0, fil, col, m, m2=0, oc=0, cancelar=0;
+        int op, op2=0,n,n2, v1, v2, r1, r2,p1,p2,u2,u1, fin=0;
+        String x, mov;
+        int punteo[] = new int[100];
+        int movimientos[] = new int[100];
         Scanner leer=new Scanner(System.in);
 
         do{
@@ -22,6 +25,17 @@ public class PacMan {
                 op=leer.nextInt();
 
                 if(op==1){
+
+                    do{
+                        System.out.println("Los controles para jugar son los siguientes: ");
+                        System.out.println("W = Arriba");
+                        System.out.println("S = Abajo");
+                        System.out.println("A = Izquierda");
+                        System.out.println("D = Derecha");
+                        System.out.println("Presione 1 si esta todo claro!");
+                        oc=leer.nextInt();
+                    }while (oc!=1);
+
                     op2=0;
 
                     userCont=userCont+1;
@@ -112,15 +126,471 @@ public class PacMan {
                         tabla[u1][u2]="#";
                     }
 
-
+                    punteo[userCont]=0;
+                    movimientos[userCont]=0;
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("Puntaje: " + punteo[userCont]);
+                    System.out.println("Movimientos: " + movimientos[userCont]);
                     for(int j=1; j<=fil; j++) {
                         for(int k=1; k<=col; k++) {
-
                             System.out.print(tabla[j][k]);
-
                         }
                         System.out.println();
                     }
+                    punteo[userCont]=10;
+
+                    do{
+
+                        mov=leer.next();
+                        System.out.println("");
+                        System.out.println("");
+                        System.out.println("");
+                        System.out.println("");
+                        System.out.println("");
+                        System.out.println("");
+                        System.out.println("");
+                        System.out.println("");
+
+                        if(mov.equals("W") || mov.equals("w")){
+                            if(v1>1) {
+                                v1 = v1 - 1;
+
+                                if (tabla[v1][v2].equals("*")) {
+                                    v1=v1+1;
+                                    for (int j = 1; j <= fil; j++) {
+                                        for (int k = 1; k <= col; k++) {
+                                            System.out.print(tabla[j][k]);
+                                        }
+                                        System.out.println();
+                                    }
+                                    movimientos[userCont] = movimientos[userCont] + 1;
+                                    System.out.println(" ");
+                                    System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                    System.out.println("Movimientos: " + movimientos[userCont]);
+                                    System.out.println("Puntaje: " + punteo[userCont]);
+                                }
+                                if (tabla[v1][v2].equals(" ")) {
+                                    tabla[v1 + 1][v2] = " ";
+                                    tabla[v1][v2] = "V";
+
+                                    for (int j = 1; j <= fil; j++) {
+                                        for (int k = 1; k <= col; k++) {
+                                            System.out.print(tabla[j][k]);
+                                        }
+                                        System.out.println();
+                                    }
+                                    movimientos[userCont] = movimientos[userCont] + 1;
+                                    System.out.println(" ");
+                                    System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                    System.out.println("Movimientos: " + movimientos[userCont]);
+                                    System.out.println("Puntaje: " + punteo[userCont]);
+                                }
+                                if (tabla[v1][v2].equals("#")) {
+                                    tabla[v1+1][v2] = " ";
+                                    tabla[v1][v2] = "V";
+                                    do {
+                                        u1 = (int) (Math.random() * (fil - 2) + 2);
+                                        u2 = (int) (Math.random() * (col - 2) + 2);
+                                    }while(tabla[u1][u2].equals("*")||tabla[u1][u2].equals("#")||tabla[u1][u2].equals("$")||tabla[u1][u2].equals("@")||tabla[u1][u2].equals("V"));
+                                    tabla[u1][u2] = "#";
+
+                                    for (int j = 1; j <= fil; j++) {
+                                        for (int k = 1; k <= col; k++) {
+                                            System.out.print(tabla[j][k]);
+                                        }
+                                        System.out.println();
+                                    }
+                                    movimientos[userCont] = movimientos[userCont] + 1;
+                                    punteo[userCont] = punteo[userCont] - 10;
+                                    System.out.println(" ");
+                                    System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                    System.out.println("Movimientos: " + movimientos[userCont]);
+                                    System.out.println("Puntaje: " + punteo[userCont]);
+                                }
+                                if (tabla[v1][v2].equals("$")) {
+                                    tabla[v1+1][v2] = " ";
+                                    tabla[v1][v2] = "V";
+                                    do {
+                                        r1 = (int) (Math.random() * (fil - 2) + 2);
+                                        r2 = (int) (Math.random() * (col - 2) + 2);
+                                    }while(tabla[r1][r2].equals("*")||tabla[r1][r2].equals("#")||tabla[r1][r2].equals("$")||tabla[r1][r2].equals("@")||tabla[r1][r2].equals("V"));
+                                    tabla[r1][r2] = "$";
+
+                                    for (int j = 1; j <= fil; j++) {
+                                        for (int k = 1; k <= col; k++) {
+                                            System.out.print(tabla[j][k]);
+                                        }
+                                        System.out.println();
+                                    }
+                                    movimientos[userCont] = movimientos[userCont] + 1;
+                                    punteo[userCont] = punteo[userCont] + 15;
+                                    System.out.println(" ");
+                                    System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                    System.out.println("Movimientos: " + movimientos[userCont]);
+                                    System.out.println("Puntaje: " + punteo[userCont]);
+                                }
+                                if (tabla[v1][v2].equals("@")) {
+                                    tabla[v1+1][v2] = " ";
+                                    tabla[v1][v2] = "V";
+                                    do{
+                                    p1 = (int) (Math.random() * (fil-2) + 2);
+                                    p2 = (int) (Math.random() * (col-2) + 2);
+                                    }while(tabla[p1][p2].equals("*")||tabla[p1][p2].equals("#")||tabla[p1][p2].equals("$")||tabla[p1][p2].equals("@")||tabla[p1][p2].equals("V"));
+                                    tabla[p1][p2]="@";
+                                    for (int j = 1; j <= fil; j++) {
+                                        for (int k = 1; k <= col; k++) {
+                                            System.out.print(tabla[j][k]);
+                                        }
+                                        System.out.println();
+                                    }
+                                    movimientos[userCont] = movimientos[userCont] + 1;
+                                    punteo[userCont] = punteo[userCont] + 10;
+                                    System.out.println(" ");
+                                    System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                    System.out.println("Movimientos: " + movimientos[userCont]);
+                                    System.out.println("Puntaje: " + punteo[userCont]);
+                                }
+                            }
+                        }
+                        if(mov.equals("S") || mov.equals("s")){
+                            v1 = v1 + 1;
+                            if (tabla[v1][v2].equals("*")) {
+                                v1= v1 - 1;
+                                for (int j = 1; j <= fil; j++) {
+                                    for (int k = 1; k <= col; k++) {
+                                        System.out.print(tabla[j][k]);
+                                    }
+                                    System.out.println();
+                                }
+                                movimientos[userCont] = movimientos[userCont] + 1;
+                                System.out.println(" ");
+                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Movimientos: " + movimientos[userCont]);
+                                System.out.println("Puntaje: " + punteo[userCont]);
+                            }
+                            if (tabla[v1][v2].equals(" ")) {
+                                tabla[v1 - 1][v2] = " ";
+                                tabla[v1][v2] = "V";
+
+                                for (int j = 1; j <= fil; j++) {
+                                    for (int k = 1; k <= col; k++) {
+                                        System.out.print(tabla[j][k]);
+                                    }
+                                    System.out.println();
+                                }
+                                movimientos[userCont] = movimientos[userCont] + 1;
+                                System.out.println(" ");
+                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Movimientos: " + movimientos[userCont]);
+                                System.out.println("Puntaje: " + punteo[userCont]);
+                            }
+                            if (tabla[v1][v2].equals("#")) {
+                                tabla[v1-1][v2] = " ";
+                                tabla[v1][v2] = "V";
+                                do {
+                                    u1 = (int) (Math.random() * (fil - 2) + 2);
+                                    u2 = (int) (Math.random() * (col - 2) + 2);
+                                }while(tabla[u1][u2].equals("*")||tabla[u1][u2].equals("#")||tabla[u1][u2].equals("$")||tabla[u1][u2].equals("@")||tabla[u1][u2].equals("V"));
+                                tabla[u1][u2] = "#";
+
+                                for (int j = 1; j <= fil; j++) {
+                                    for (int k = 1; k <= col; k++) {
+                                        System.out.print(tabla[j][k]);
+                                    }
+                                    System.out.println();
+                                }
+                                movimientos[userCont] = movimientos[userCont] + 1;
+                                punteo[userCont] = punteo[userCont] - 10;
+                                System.out.println(" ");
+                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Movimientos: " + movimientos[userCont]);
+                                System.out.println("Puntaje: " + punteo[userCont]);
+                            }
+                            if (tabla[v1][v2].equals("$")) {
+                                tabla[v1-1][v2] = " ";
+                                tabla[v1][v2] = "V";
+                                do {
+                                    r1 = (int) (Math.random() * (fil - 2) + 2);
+                                    r2 = (int) (Math.random() * (col - 2) + 2);
+                                }while(tabla[r1][r2].equals("*")||tabla[r1][r2].equals("#")||tabla[r1][r2].equals("$")||tabla[r1][r2].equals("@")||tabla[r1][r2].equals("V"));
+                                tabla[r1][r2] = "$";
+
+                                for (int j = 1; j <= fil; j++) {
+                                    for (int k = 1; k <= col; k++) {
+                                        System.out.print(tabla[j][k]);
+                                    }
+                                    System.out.println();
+                                }
+                                movimientos[userCont] = movimientos[userCont] + 1;
+                                punteo[userCont] = punteo[userCont] + 15;
+                                System.out.println(" ");
+                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Movimientos: " + movimientos[userCont]);
+                                System.out.println("Puntaje: " + punteo[userCont]);
+                            }
+                            if (tabla[v1][v2].equals("@")) {
+                                tabla[v1-1][v2] = " ";
+                                tabla[v1][v2] = "V";
+                                do{
+                                    p1 = (int) (Math.random() * (fil-2) + 2);
+                                    p2 = (int) (Math.random() * (col-2) + 2);
+                                }while(tabla[p1][p2].equals("*")||tabla[p1][p2].equals("#")||tabla[p1][p2].equals("$")||tabla[p1][p2].equals("@")||tabla[p1][p2].equals("V"));
+                                tabla[p1][p2]="@";
+                                for (int j = 1; j <= fil; j++) {
+                                    for (int k = 1; k <= col; k++) {
+                                        System.out.print(tabla[j][k]);
+                                    }
+                                    System.out.println();
+                                }
+                                movimientos[userCont] = movimientos[userCont] + 1;
+                                punteo[userCont] = punteo[userCont] + 10;
+                                System.out.println(" ");
+                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Movimientos: " + movimientos[userCont]);
+                                System.out.println("Puntaje: " + punteo[userCont]);
+                            }
+
+                        }
+                        if(mov.equals("A") || mov.equals("a")){
+                            v2 = v2 - 1;
+                            if (tabla[v1][v2].equals("*")) {
+                                v2= v2 + 1;
+                                for (int j = 1; j <= fil; j++) {
+                                    for (int k = 1; k <= col; k++) {
+                                        System.out.print(tabla[j][k]);
+                                    }
+                                    System.out.println();
+                                }
+                                movimientos[userCont] = movimientos[userCont] + 1;
+                                System.out.println(" ");
+                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Movimientos: " + movimientos[userCont]);
+                                System.out.println("Puntaje: " + punteo[userCont]);
+                            }
+                            if (tabla[v1][v2].equals(" ")) {
+                                tabla[v1][v2+1] = " ";
+                                tabla[v1][v2] = "V";
+
+                                for (int j = 1; j <= fil; j++) {
+                                    for (int k = 1; k <= col; k++) {
+                                        System.out.print(tabla[j][k]);
+                                    }
+                                    System.out.println();
+                                }
+                                movimientos[userCont] = movimientos[userCont] + 1;
+                                System.out.println(" ");
+                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Movimientos: " + movimientos[userCont]);
+                                System.out.println("Puntaje: " + punteo[userCont]);
+                            }
+                            if (tabla[v1][v2].equals("#")) {
+                                tabla[v1][v2+1] = " ";
+                                tabla[v1][v2] = "V";
+                                do {
+                                    u1 = (int) (Math.random() * (fil - 2) + 2);
+                                    u2 = (int) (Math.random() * (col - 2) + 2);
+                                }while(tabla[u1][u2].equals("*")||tabla[u1][u2].equals("#")||tabla[u1][u2].equals("$")||tabla[u1][u2].equals("@")||tabla[u1][u2].equals("V"));
+                                tabla[u1][u2] = "#";
+
+                                for (int j = 1; j <= fil; j++) {
+                                    for (int k = 1; k <= col; k++) {
+                                        System.out.print(tabla[j][k]);
+                                    }
+                                    System.out.println();
+                                }
+                                movimientos[userCont] = movimientos[userCont] + 1;
+                                punteo[userCont] = punteo[userCont] - 10;
+                                System.out.println(" ");
+                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Movimientos: " + movimientos[userCont]);
+                                System.out.println("Puntaje: " + punteo[userCont]);
+                            }
+                            if (tabla[v1][v2].equals("$")) {
+                                tabla[v1][v2+1] = " ";
+                                tabla[v1][v2] = "V";
+                                do {
+                                    r1 = (int) (Math.random() * (fil - 2) + 2);
+                                    r2 = (int) (Math.random() * (col - 2) + 2);
+                                }while(tabla[r1][r2].equals("*")||tabla[r1][r2].equals("#")||tabla[r1][r2].equals("$")||tabla[r1][r2].equals("@")||tabla[r1][r2].equals("V"));
+                                tabla[r1][r2] = "$";
+
+                                for (int j = 1; j <= fil; j++) {
+                                    for (int k = 1; k <= col; k++) {
+                                        System.out.print(tabla[j][k]);
+                                    }
+                                    System.out.println();
+                                }
+                                movimientos[userCont] = movimientos[userCont] + 1;
+                                punteo[userCont] = punteo[userCont] + 15;
+                                System.out.println(" ");
+                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Movimientos: " + movimientos[userCont]);
+                                System.out.println("Puntaje: " + punteo[userCont]);
+                            }
+                            if (tabla[v1][v2].equals("@")) {
+                                tabla[v1][v2+1] = " ";
+                                tabla[v1][v2] = "V";
+                                do{
+                                    p1 = (int) (Math.random() * (fil-2) + 2);
+                                    p2 = (int) (Math.random() * (col-2) + 2);
+                                }while(tabla[p1][p2].equals("*")||tabla[p1][p2].equals("#")||tabla[p1][p2].equals("$")||tabla[p1][p2].equals("@")||tabla[p1][p2].equals("V"));
+                                tabla[p1][p2]="@";
+                                for (int j = 1; j <= fil; j++) {
+                                    for (int k = 1; k <= col; k++) {
+                                        System.out.print(tabla[j][k]);
+                                    }
+                                    System.out.println();
+                                }
+                                movimientos[userCont] = movimientos[userCont] + 1;
+                                punteo[userCont] = punteo[userCont] + 10;
+                                System.out.println(" ");
+                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Movimientos: " + movimientos[userCont]);
+                                System.out.println("Puntaje: " + punteo[userCont]);
+                            }
+                        }
+                        if(mov.equals("D") || mov.equals("d")){
+                            v2 = v2 + 1;
+                            if (tabla[v1][v2].equals("*")) {
+                                v2= v2 - 1;
+                                for (int j = 1; j <= fil; j++) {
+                                    for (int k = 1; k <= col; k++) {
+                                        System.out.print(tabla[j][k]);
+                                    }
+                                    System.out.println();
+                                }
+                                movimientos[userCont] = movimientos[userCont] + 1;
+                                System.out.println(" ");
+                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Movimientos: " + movimientos[userCont]);
+                                System.out.println("Puntaje: " + punteo[userCont]);
+                            }
+                            if (tabla[v1][v2].equals(" ")) {
+                                tabla[v1][v2-1] = " ";
+                                tabla[v1][v2] = "V";
+
+                                for (int j = 1; j <= fil; j++) {
+                                    for (int k = 1; k <= col; k++) {
+                                        System.out.print(tabla[j][k]);
+                                    }
+                                    System.out.println();
+                                }
+                                movimientos[userCont] = movimientos[userCont] + 1;
+                                System.out.println(" ");
+                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Movimientos: " + movimientos[userCont]);
+                                System.out.println("Puntaje: " + punteo[userCont]);
+                            }
+                            if (tabla[v1][v2].equals("#")) {
+                                tabla[v1][v2-1] = " ";
+                                tabla[v1][v2] = "V";
+                                do {
+                                    u1 = (int) (Math.random() * (fil - 2) + 2);
+                                    u2 = (int) (Math.random() * (col - 2) + 2);
+                                }while(tabla[u1][u2].equals("*")||tabla[u1][u2].equals("#")||tabla[u1][u2].equals("$")||tabla[u1][u2].equals("@")||tabla[u1][u2].equals("V"));
+                                tabla[u1][u2] = "#";
+
+                                for (int j = 1; j <= fil; j++) {
+                                    for (int k = 1; k <= col; k++) {
+                                        System.out.print(tabla[j][k]);
+                                    }
+                                    System.out.println();
+                                }
+                                movimientos[userCont] = movimientos[userCont] + 1;
+                                punteo[userCont] = punteo[userCont] - 10;
+                                System.out.println(" ");
+                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Movimientos: " + movimientos[userCont]);
+                                System.out.println("Puntaje: " + punteo[userCont]);
+                            }
+                            if (tabla[v1][v2].equals("$")) {
+                                tabla[v1][v2-1] = " ";
+                                tabla[v1][v2] = "V";
+                                do {
+                                    r1 = (int) (Math.random() * (fil - 2) + 2);
+                                    r2 = (int) (Math.random() * (col - 2) + 2);
+                                }while(tabla[r1][r2].equals("*")||tabla[r1][r2].equals("#")||tabla[r1][r2].equals("$")||tabla[r1][r2].equals("@")||tabla[r1][r2].equals("V"));
+                                tabla[r1][r2] = "$";
+
+                                for (int j = 1; j <= fil; j++) {
+                                    for (int k = 1; k <= col; k++) {
+                                        System.out.print(tabla[j][k]);
+                                    }
+                                    System.out.println();
+                                }
+                                movimientos[userCont] = movimientos[userCont] + 1;
+                                punteo[userCont] = punteo[userCont] + 15;
+                                System.out.println(" ");
+                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Movimientos: " + movimientos[userCont]);
+                                System.out.println("Puntaje: " + punteo[userCont]);
+                            }
+                            if (tabla[v1][v2].equals("@")) {
+                                tabla[v1][v2-1] = " ";
+                                tabla[v1][v2] = "V";
+                                do{
+                                    p1 = (int) (Math.random() * (fil-2) + 2);
+                                    p2 = (int) (Math.random() * (col-2) + 2);
+                                }while(tabla[p1][p2].equals("*")||tabla[p1][p2].equals("#")||tabla[p1][p2].equals("$")||tabla[p1][p2].equals("@")||tabla[p1][p2].equals("V"));
+                                tabla[p1][p2]="@";
+                                for (int j = 1; j <= fil; j++) {
+                                    for (int k = 1; k <= col; k++) {
+                                        System.out.print(tabla[j][k]);
+                                    }
+                                    System.out.println();
+                                }
+                                movimientos[userCont] = movimientos[userCont] + 1;
+                                punteo[userCont] = punteo[userCont] + 10;
+                                System.out.println(" ");
+                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Movimientos: " + movimientos[userCont]);
+                                System.out.println("Puntaje: " + punteo[userCont]);
+
+                            }
+
+                        }
+                        if(!"w".equals(mov)& !"W".equals(mov) & !"s".equals(mov) & !"S".equals(mov) & !"d".equals(mov) & !"D".equals(mov) & !"a".equals(mov) & !"A".equals(mov)){
+                            for (int j = 1; j <= fil; j++) {
+                                for (int k = 1; k <= col; k++) {
+                                    System.out.print(tabla[j][k]);
+                                }
+                                System.out.println();
+                            }
+                            System.out.println("Movimientos: " + movimientos[userCont]);
+                            System.out.println("Puntaje: " + punteo[userCont]);
+                            System.out.println("*** CONTROLES NO VALIDOS ***");
+                            System.out.println("Los controles para jugar son: ");
+                            System.out.println("W = Arriba");
+                            System.out.println("S = Abajo");
+                            System.out.println("A = Izquierda");
+                            System.out.println("D = Derecha");
+
+                        }
+
+                        if(mov.equals("1")){
+                            cancelar=1;
+                        }
+
+                        if(punteo[userCont]==0){
+                            cancelar=2;
+                        }
+
+                    }while(cancelar<1 || cancelar>2);
+
+                    if(punteo[userCont]==0){
+                        System.out.println("FINAL");
+                    }
+                    if(cancelar==1){
+                        System.out.println("CANCELAR");
+                    }
+
+
+
 
 
                 }
@@ -131,6 +601,7 @@ public class PacMan {
                     }else{
                         System.out.println("*** HISTORIAL ***");
                         for(int i=1; i<=userCont; i++) {
+                            System.out.println("JUGADOR " + i);
                             System.out.println("Nombre: " + nom[i]);
                             System.out.println("Edad: " + edad[i]);
                             System.out.println("*****************");
