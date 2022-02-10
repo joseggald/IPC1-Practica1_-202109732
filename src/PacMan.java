@@ -4,11 +4,12 @@ public class PacMan {
 
     public static void main(String[] args) {
 
+
         String  edad[] = new String [100];
         String  nom[] = new String [100];
         String tabla[][] = new String [100][100];
         int userCont=0, fil, col, m, m2=0, oc=0, cancelar=0;
-        int op, op2=0,n,n2, v1, v2, r1, r2,p1,p2,u2,u1, fin=0;
+        int op, op2=0,n,n2, v1, v2, r1, r2,p1,p2,u2,u1, fin=0,cn=0;
         String x, mov;
         int punteo[] = new int[100];
         int movimientos[] = new int[100];
@@ -25,6 +26,19 @@ public class PacMan {
                 op=leer.nextInt();
 
                 if(op==1){
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    cancelar=0;
 
                     do{
                         System.out.println("Los controles para jugar son los siguientes: ");
@@ -134,8 +148,7 @@ public class PacMan {
                     System.out.println("");
                     System.out.println("");
                     System.out.println("");
-                    System.out.println("Puntaje: " + punteo[userCont]);
-                    System.out.println("Movimientos: " + movimientos[userCont]);
+
                     for(int j=1; j<=fil; j++) {
                         for(int k=1; k<=col; k++) {
                             System.out.print(tabla[j][k]);
@@ -143,6 +156,8 @@ public class PacMan {
                         System.out.println();
                     }
                     punteo[userCont]=10;
+                    System.out.println("Puntaje: " + punteo[userCont]);
+                    System.out.println("Movimientos: " + movimientos[userCont]);
 
                     do{
 
@@ -583,28 +598,72 @@ public class PacMan {
                     }while(cancelar<1 || cancelar>2);
 
                     if(punteo[userCont]==0){
-                        System.out.println("FINAL");
+
+                        System.out.println("");
+                        System.out.println("");
+                        System.out.println("");
+                        System.out.println("");
+                        System.out.println("");
+                        System.out.println("");
+                        System.out.println("");
+                        System.out.println("");
+                        System.out.println("****** FIN DEL JUEGO ******");
+                        System.out.println("Su puntuación fue 0.");
+                        do {
+                            System.out.println("");
+                            System.out.println("Presione 1 para volver al menu!");
+                            op2 = leer.nextInt();
+                        }while (op2<1 || op2>1);
                     }
                     if(cancelar==1){
-                        System.out.println("CANCELAR");
+                        System.out.println("");
+                        System.out.println("");
+                        System.out.println("");
+                        System.out.println("");
+                        System.out.println("");
+                        System.out.println("");
+                        System.out.println("");
+                        System.out.println("");
+                        System.out.println("****** FIN DEL JUEGO ******");
+                        System.out.println("Haz decidido terminar el juego!");
+                        System.out.println("Su puntuación es: "+ punteo[userCont] + " con un total de: " + movimientos[userCont] +" movimientos.");
+                        do {
+                            System.out.println("");
+                            System.out.println("Presione 1 para volver al menu!");
+                            op2 = leer.nextInt();
+                        }while (op2<1 || op2>1);
                     }
-
-
-
-
 
                 }
                 if(op==2){
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("");
 
                     if(userCont==0){
                         System.out.println("Sin historial.");
                     }else{
                         System.out.println("*** HISTORIAL ***");
+                        cn=0;
                         for(int i=1; i<=userCont; i++) {
-                            System.out.println("JUGADOR " + i);
-                            System.out.println("Nombre: " + nom[i]);
-                            System.out.println("Edad: " + edad[i]);
-                            System.out.println("*****************");
+                            if (punteo[i]>1) {
+                                cn=cn+1;
+                                System.out.println("°°°JUGADOR " + cn +"°°°");
+                                System.out.println("Nombre: " + nom[i]);
+                                System.out.println("Edad: " + edad[i]);
+                                System.out.println("Puntuacion: " + punteo[i]);
+                                System.out.println("Movimientos: " + movimientos[i]);
+                                System.out.println("*****************");
+                            }
                         }
                     }
                     do{
@@ -617,7 +676,7 @@ public class PacMan {
             while(op2==1);
 
             if(op==3){
-                System.exit(0);
+                
             }
             if(op<1 || op>3){
                 System.out.println("Ingrese la opcion valida.");
