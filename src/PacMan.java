@@ -4,21 +4,27 @@ public class PacMan {
 
     public static void main(String[] args) {
 
-
+        //Matrices y vectores.
         String  edad[] = new String [100];
         String  nom[] = new String [100];
         String tabla[][] = new String [100][100];
+        int punteo[] = new int[100];
+        int movimientos[] = new int[100];
+
+        //Variables a utilizar.
         int userCont=0, fil, col, m, m2=0, oc=0, cancelar=0;
         int op, op2=0,n,n2, v1, v2, r1, r2,p1,p2,u2,u1, fin=0,cn=0;
         String x, mov;
-        int punteo[] = new int[100];
-        int movimientos[] = new int[100];
         int rep;
+
+        //Leer.
         Scanner leer=new Scanner(System.in);
+
 
         do{
             do{
 
+                //Menu Principal
                 System.out.println("*********************");
                 System.out.println("* 1. Jugar          *");
                 System.out.println("* 2. Historial      *");
@@ -27,6 +33,7 @@ public class PacMan {
                 op=leer.nextInt();
 
                 if(op==1){
+                    //Opción 1: Jugar
                     System.out.println("");
                     System.out.println(""); 
                     System.out.println("");
@@ -41,6 +48,7 @@ public class PacMan {
                     System.out.println("");
                     cancelar=0;
 
+                    // Instrucciones.
                     do{
                         System.out.println("Los controles para jugar son los siguientes: ");
                         System.out.println("W = Arriba");
@@ -53,6 +61,7 @@ public class PacMan {
 
                     op2=0;
 
+                    //Registro de datos.
                     userCont=userCont+1;
                     System.out.println("Ingrese su NOMBRE: ");
                     nom[userCont]=leer.next();
@@ -60,6 +69,7 @@ public class PacMan {
                     edad[userCont]=leer.next();
 
 
+                    //Dimension del tablero.
                     System.out.println("Ingrese la dimension de la matriz (Su minimo es 8x8.).");
                     do {
                         System.out.println("Filas:");
@@ -70,9 +80,13 @@ public class PacMan {
                             System.out.println("No cumple las normas del programa porfavor reingrese las filas y columnas.");
                         }
                     }while(fil<8 || col<8);
+
+
+
                     m=fil/2;
                     m2=m+1;
 
+                    //Llenado de datos del Tablero.
                     for(int j=1; j<=fil; j++) {
                         for(int k=1; k<=col; k++) {
 
@@ -180,6 +194,7 @@ public class PacMan {
                     System.out.println("");
                     System.out.println("");
 
+                    //Impresion de Tablero.
                     for(int j=1; j<=fil; j++) {
                         for(int k=1; k<=col; k++) {
                             System.out.print(tabla[j][k]);
@@ -190,6 +205,8 @@ public class PacMan {
                     System.out.println("Puntaje: " + punteo[userCont]);
                     System.out.println("Movimientos: " + movimientos[userCont]);
 
+
+                    //Movimientos.
                     do{
 
                         mov=leer.next();
