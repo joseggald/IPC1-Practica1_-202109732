@@ -1,4 +1,4 @@
-import java.io.IOException;
+
 import java.util.Scanner;
 public class PacMan {
 
@@ -13,6 +13,7 @@ public class PacMan {
         String x, mov;
         int punteo[] = new int[100];
         int movimientos[] = new int[100];
+        int rep;
         Scanner leer=new Scanner(System.in);
 
         do{
@@ -27,7 +28,7 @@ public class PacMan {
 
                 if(op==1){
                     System.out.println("");
-                    System.out.println("");
+                    System.out.println(""); 
                     System.out.println("");
                     System.out.println("");
                     System.out.println("");
@@ -128,17 +129,47 @@ public class PacMan {
                     v1 = (int) (Math.random() * (6) + 3);
                     v2 = (int) (Math.random() * (6) + 3);
                     tabla[v1][v2]="V";
+
                     if(fil<=100 && col<=100){
-                        r1 = (int) (Math.random()*(fil-2) + 2);
-                        r2 = (int) (Math.random() * (col-2) + 2);
-                        tabla[r1][r2]="$";
-                        p1 = (int) (Math.random() * (fil-2) + 2);
-                        p2 = (int) (Math.random() * (col-2) + 2);
-                        tabla[p1][p2]="@";
-                        u1 = (int) (Math.random() * (fil-2) + 2);
-                        u2 = (int) (Math.random() * (col-2) + 2);
-                        tabla[u1][u2]="#";
+                        do {
+                            rep=0;
+                            r1 = (int) (Math.random() * (fil - 2) + 2);
+                            r2 = (int) (Math.random() * (col - 2) + 2);
+                            if (r1 != (m2) && r2!=2|| r1 != (m2) && r2!=(col-1) || r1 != (2) && r2!=2|| r1 != (m) && r2!=(col-1)) {
+                                tabla[r1][r2] = "$";
+                                rep=1;
+                            }
+                        }while(rep!=1);
+                        do {
+                            rep=0;
+                            p1 = (int) (Math.random() * (fil-2) + 2);
+                            p2 = (int) (Math.random() * (col-2) + 2);
+                            if (p1 != (m2) && p2!=2|| p1 != (m2) && p2!=(col-1) || p1 != (m) && p2!=2|| p1 != (m) && p2!=(col-1)) {
+                                tabla[p1][p2]="@";
+                                rep=1;
+                            }
+                        }while(rep!=1);
+                        do {
+                            rep=0;
+                            u1 = (int) (Math.random() * (fil-2) + 2);
+                            u2 = (int) (Math.random() * (col-2) + 2);
+                            if (u1 != (m2) && u2!=2|| u1 != (m2) && u2!=(col-1) || u1 != (m) && u2!=2|| u1 != (m) && u2!=(col-1)) {
+                                tabla[u1][u2]="#";
+                                rep=1;
+                            }
+                        }while(rep!=1);
+
+
+
                     }
+                    tabla[m][1]=" ";
+                    tabla[m2][1]=" ";
+                    tabla[m][col]=" ";
+                    tabla[m2][col]=" ";
+                    tabla[m][2]=" ";
+                    tabla[m2][2]=" ";
+                    tabla[m][col-1]=" ";
+                    tabla[m2][col-1]=" ";
 
                     punteo[userCont]=0;
                     movimientos[userCont]=0;
@@ -185,7 +216,7 @@ public class PacMan {
                                     }
                                     movimientos[userCont] = movimientos[userCont] + 1;
                                     System.out.println(" ");
-                                    System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                    System.out.println("Siempre que desees terminar el juego presiona M.");
                                     System.out.println("Movimientos: " + movimientos[userCont]);
                                     System.out.println("Puntaje: " + punteo[userCont]);
                                 }
@@ -201,7 +232,7 @@ public class PacMan {
                                     }
                                     movimientos[userCont] = movimientos[userCont] + 1;
                                     System.out.println(" ");
-                                    System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                    System.out.println("Siempre que desees terminar el juego presiona M.");
                                     System.out.println("Movimientos: " + movimientos[userCont]);
                                     System.out.println("Puntaje: " + punteo[userCont]);
                                 }
@@ -223,7 +254,7 @@ public class PacMan {
                                     movimientos[userCont] = movimientos[userCont] + 1;
                                     punteo[userCont] = punteo[userCont] - 10;
                                     System.out.println(" ");
-                                    System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                    System.out.println("Siempre que desees terminar el juego presiona M.");
                                     System.out.println("Movimientos: " + movimientos[userCont]);
                                     System.out.println("Puntaje: " + punteo[userCont]);
                                 }
@@ -245,7 +276,7 @@ public class PacMan {
                                     movimientos[userCont] = movimientos[userCont] + 1;
                                     punteo[userCont] = punteo[userCont] + 15;
                                     System.out.println(" ");
-                                    System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                    System.out.println("Siempre que desees terminar el juego presiona M.");
                                     System.out.println("Movimientos: " + movimientos[userCont]);
                                     System.out.println("Puntaje: " + punteo[userCont]);
                                 }
@@ -266,7 +297,7 @@ public class PacMan {
                                     movimientos[userCont] = movimientos[userCont] + 1;
                                     punteo[userCont] = punteo[userCont] + 10;
                                     System.out.println(" ");
-                                    System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                    System.out.println("Siempre que desees terminar el juego presiona M.");
                                     System.out.println("Movimientos: " + movimientos[userCont]);
                                     System.out.println("Puntaje: " + punteo[userCont]);
                                 }
@@ -284,10 +315,11 @@ public class PacMan {
                                 }
                                 movimientos[userCont] = movimientos[userCont] + 1;
                                 System.out.println(" ");
-                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Siempre que desees terminar el juego presiona M.");
                                 System.out.println("Movimientos: " + movimientos[userCont]);
                                 System.out.println("Puntaje: " + punteo[userCont]);
                             }
+
                             if (tabla[v1][v2].equals(" ")) {
                                 tabla[v1 - 1][v2] = " ";
                                 tabla[v1][v2] = "V";
@@ -300,7 +332,7 @@ public class PacMan {
                                 }
                                 movimientos[userCont] = movimientos[userCont] + 1;
                                 System.out.println(" ");
-                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Siempre que desees terminar el juego presiona M.");
                                 System.out.println("Movimientos: " + movimientos[userCont]);
                                 System.out.println("Puntaje: " + punteo[userCont]);
                             }
@@ -322,7 +354,7 @@ public class PacMan {
                                 movimientos[userCont] = movimientos[userCont] + 1;
                                 punteo[userCont] = punteo[userCont] - 10;
                                 System.out.println(" ");
-                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Siempre que desees terminar el juego presiona M.");
                                 System.out.println("Movimientos: " + movimientos[userCont]);
                                 System.out.println("Puntaje: " + punteo[userCont]);
                             }
@@ -344,7 +376,7 @@ public class PacMan {
                                 movimientos[userCont] = movimientos[userCont] + 1;
                                 punteo[userCont] = punteo[userCont] + 15;
                                 System.out.println(" ");
-                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Siempre que desees terminar el juego presiona M.");
                                 System.out.println("Movimientos: " + movimientos[userCont]);
                                 System.out.println("Puntaje: " + punteo[userCont]);
                             }
@@ -365,7 +397,7 @@ public class PacMan {
                                 movimientos[userCont] = movimientos[userCont] + 1;
                                 punteo[userCont] = punteo[userCont] + 10;
                                 System.out.println(" ");
-                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Siempre que desees terminar el juego presiona M.");
                                 System.out.println("Movimientos: " + movimientos[userCont]);
                                 System.out.println("Puntaje: " + punteo[userCont]);
                             }
@@ -373,6 +405,22 @@ public class PacMan {
                         }
                         if(mov.equals("A") || mov.equals("a")){
                             v2 = v2 - 1;
+                            if(v1==m && v2==0 || v1==m2 && v2==0){
+                                tabla[v1][1] = " ";
+                                v2=col;
+                                tabla[v1][v2] = "V";
+                                for (int j = 1; j <= fil; j++) {
+                                    for (int k = 1; k <= col; k++) {
+                                        System.out.print(tabla[j][k]);
+                                    }
+                                    System.out.println();
+                                }
+                                movimientos[userCont] = movimientos[userCont] + 1;
+                                System.out.println(" ");
+                                System.out.println("Siempre que desees terminar el juego presiona M.");
+                                System.out.println("Movimientos: " + movimientos[userCont]);
+                                System.out.println("Puntaje: " + punteo[userCont]);
+                            }
                             if (tabla[v1][v2].equals("*")) {
                                 v2= v2 + 1;
                                 for (int j = 1; j <= fil; j++) {
@@ -383,7 +431,7 @@ public class PacMan {
                                 }
                                 movimientos[userCont] = movimientos[userCont] + 1;
                                 System.out.println(" ");
-                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Siempre que desees terminar el juego presiona M.");
                                 System.out.println("Movimientos: " + movimientos[userCont]);
                                 System.out.println("Puntaje: " + punteo[userCont]);
                             }
@@ -399,7 +447,7 @@ public class PacMan {
                                 }
                                 movimientos[userCont] = movimientos[userCont] + 1;
                                 System.out.println(" ");
-                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Siempre que desees terminar el juego presiona M.");
                                 System.out.println("Movimientos: " + movimientos[userCont]);
                                 System.out.println("Puntaje: " + punteo[userCont]);
                             }
@@ -421,7 +469,7 @@ public class PacMan {
                                 movimientos[userCont] = movimientos[userCont] + 1;
                                 punteo[userCont] = punteo[userCont] - 10;
                                 System.out.println(" ");
-                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Siempre que desees terminar el juego presiona M.");
                                 System.out.println("Movimientos: " + movimientos[userCont]);
                                 System.out.println("Puntaje: " + punteo[userCont]);
                             }
@@ -443,7 +491,7 @@ public class PacMan {
                                 movimientos[userCont] = movimientos[userCont] + 1;
                                 punteo[userCont] = punteo[userCont] + 15;
                                 System.out.println(" ");
-                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Siempre que desees terminar el juego presiona M.");
                                 System.out.println("Movimientos: " + movimientos[userCont]);
                                 System.out.println("Puntaje: " + punteo[userCont]);
                             }
@@ -464,13 +512,29 @@ public class PacMan {
                                 movimientos[userCont] = movimientos[userCont] + 1;
                                 punteo[userCont] = punteo[userCont] + 10;
                                 System.out.println(" ");
-                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Siempre que desees terminar el juego presiona M.");
                                 System.out.println("Movimientos: " + movimientos[userCont]);
                                 System.out.println("Puntaje: " + punteo[userCont]);
                             }
                         }
                         if(mov.equals("D") || mov.equals("d")){
                             v2 = v2 + 1;
+                            if(v1==m && v2==col+1 || v1==m2 && v2==col+1){
+                                tabla[v1][col] = " ";
+                                v2=1;
+                                tabla[v1][v2] = "V";
+                                for (int j = 1; j <= fil; j++) {
+                                    for (int k = 1; k <= col; k++) {
+                                        System.out.print(tabla[j][k]);
+                                    }
+                                    System.out.println();
+                                }
+                                movimientos[userCont] = movimientos[userCont] + 1;
+                                System.out.println(" ");
+                                System.out.println("Siempre que desees terminar el juego presiona M.");
+                                System.out.println("Movimientos: " + movimientos[userCont]);
+                                System.out.println("Puntaje: " + punteo[userCont]);
+                            }
                             if (tabla[v1][v2].equals("*")) {
                                 v2= v2 - 1;
                                 for (int j = 1; j <= fil; j++) {
@@ -481,7 +545,7 @@ public class PacMan {
                                 }
                                 movimientos[userCont] = movimientos[userCont] + 1;
                                 System.out.println(" ");
-                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Siempre que desees terminar el juego presiona M.");
                                 System.out.println("Movimientos: " + movimientos[userCont]);
                                 System.out.println("Puntaje: " + punteo[userCont]);
                             }
@@ -497,7 +561,7 @@ public class PacMan {
                                 }
                                 movimientos[userCont] = movimientos[userCont] + 1;
                                 System.out.println(" ");
-                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Siempre que desees terminar el juego presiona M.");
                                 System.out.println("Movimientos: " + movimientos[userCont]);
                                 System.out.println("Puntaje: " + punteo[userCont]);
                             }
@@ -519,7 +583,7 @@ public class PacMan {
                                 movimientos[userCont] = movimientos[userCont] + 1;
                                 punteo[userCont] = punteo[userCont] - 10;
                                 System.out.println(" ");
-                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Siempre que desees terminar el juego presiona M.");
                                 System.out.println("Movimientos: " + movimientos[userCont]);
                                 System.out.println("Puntaje: " + punteo[userCont]);
                             }
@@ -541,7 +605,7 @@ public class PacMan {
                                 movimientos[userCont] = movimientos[userCont] + 1;
                                 punteo[userCont] = punteo[userCont] + 15;
                                 System.out.println(" ");
-                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Siempre que desees terminar el juego presiona M.");
                                 System.out.println("Movimientos: " + movimientos[userCont]);
                                 System.out.println("Puntaje: " + punteo[userCont]);
                             }
@@ -562,7 +626,7 @@ public class PacMan {
                                 movimientos[userCont] = movimientos[userCont] + 1;
                                 punteo[userCont] = punteo[userCont] + 10;
                                 System.out.println(" ");
-                                System.out.println("Siempre que desees terminar el juego presiona 1.");
+                                System.out.println("Siempre que desees terminar el juego presiona M.");
                                 System.out.println("Movimientos: " + movimientos[userCont]);
                                 System.out.println("Puntaje: " + punteo[userCont]);
 
@@ -587,7 +651,7 @@ public class PacMan {
 
                         }
 
-                        if(mov.equals("1")){
+                        if(mov.equals("M") || mov.equals("m")){
                             cancelar=1;
                         }
 
@@ -672,12 +736,14 @@ public class PacMan {
                     }while(op2<1 || op2>1);
 
                 }
+                if(op==3){
+                    System.exit(0);
+                    return;
+                }
             }
             while(op2==1);
 
-            if(op==3){
-                
-            }
+
             if(op<1 || op>3){
                 System.out.println("Ingrese la opcion valida.");
             }
